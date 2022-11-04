@@ -11,35 +11,33 @@ class _StartingRoundViewState extends State<StartingRoundView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('Starting Round...')),
-        body: Container(
-            child: Column(
-          children: [
-            Text('Get ready for round... 1!'),
-            Text(
-              'YO',
-              style: TextStyle(fontSize: 64),
-            ),
-            Text(
-              'HO',
-              style: TextStyle(fontSize: 64),
-            ),
-            Text(
-              'HO!',
-              style: TextStyle(fontSize: 64),
-            ),
-            // TODO: later we will have an animation here for the countdown, but for right now just click button
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return BettingView();
-                  }));
-                },
-                child: Text('(Continue)'))
-          ],
-        )),
-      ),
+          appBar: AppBar(title: const Text('Starting Round...')),
+          body: Column(
+            children: [
+              const Text('Get ready for round... 1!'),
+              const Text(
+                'YO',
+                style: TextStyle(fontSize: 64),
+              ),
+              const Text(
+                'HO',
+                style: TextStyle(fontSize: 64),
+              ),
+              const Text(
+                'HO!',
+                style: TextStyle(fontSize: 64),
+              ),
+              // TODO: later we will have an animation here for the countdown, but for right now just click button
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return BettingView();
+                    }));
+                  },
+                  child: const Text('(Continue)'))
+            ],
+          )),
     );
   }
 }

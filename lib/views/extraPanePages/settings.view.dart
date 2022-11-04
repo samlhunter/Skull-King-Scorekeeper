@@ -10,12 +10,17 @@ class _SettingsViewState extends State<SettingsView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('Settings')),
-        body: Container(
-            child: Column(
-          children: [Text('Settings View')],
-        )),
-      ),
+          appBar: AppBar(title: const Text('Settings')),
+          body: Column(
+            children: [
+              const Text('Settings View'),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Back to Game'))
+            ],
+          )),
     );
   }
 }

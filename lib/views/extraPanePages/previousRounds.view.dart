@@ -10,12 +10,17 @@ class _PreviousRoundsViewState extends State<PreviousRoundsView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('Previous Rounds')),
-        body: Container(
-            child: Column(
-          children: [Text('Previous Rounds')],
-        )),
-      ),
+          appBar: AppBar(title: const Text('Previous Rounds')),
+          body: Column(
+            children: [
+              const Text('Previous Rounds'),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Back to Game'))
+            ],
+          )),
     );
   }
 }

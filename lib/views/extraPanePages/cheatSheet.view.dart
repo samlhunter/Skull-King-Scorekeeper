@@ -10,12 +10,17 @@ class _CheatSheetViewState extends State<CheatSheetView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('Cheat Sheet')),
-        body: Container(
-            child: Column(
-          children: [Text('Cheat Sheet')],
-        )),
-      ),
+          appBar: AppBar(title: const Text('Cheat Sheet')),
+          body: Column(
+            children: [
+              const Text('Back to Game'),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Back to Game'))
+            ],
+          )),
     );
   }
 }
