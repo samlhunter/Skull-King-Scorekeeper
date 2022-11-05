@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skull_king_scorekeeper/views/betting.view.dart';
+import 'package:delayed_display/delayed_display.dart';
 
 class StartingRoundView extends StatefulWidget {
   @override
@@ -7,31 +8,53 @@ class StartingRoundView extends StatefulWidget {
 }
 
 class _StartingRoundViewState extends State<StartingRoundView> {
+  final Duration initialDelay = Duration(milliseconds: 700);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(title: const Text('Starting Round...')),
           body: Column(
-            children: [
-              const Text('Get ready for round... 1!'),
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
               const Text(
-                'YO',
-                style: TextStyle(fontSize: 64),
+                'Get ready for round... 1!',
+                style: TextStyle(fontSize: 30),
+                textAlign: TextAlign.center,
               ),
-              const Text(
-                'HO',
-                style: TextStyle(fontSize: 64),
+              DelayedDisplay(
+                delay: initialDelay,
+                child: const Text(
+                  'YO',
+                  style: TextStyle(fontSize: 64),
+                  textAlign: TextAlign.center,
+                ),
               ),
-              const Text(
-                'HO!',
-                style: TextStyle(fontSize: 64),
+
+              DelayedDisplay(
+                delay:
+                    Duration(milliseconds: initialDelay.inMilliseconds + 700),
+                child: const Text(
+                  'HO',
+                  style: TextStyle(fontSize: 64),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              DelayedDisplay(
+                delay:
+                    Duration(milliseconds: initialDelay.inMilliseconds + 1400),
+                child: const Text(
+                  'HO',
+                  style: TextStyle(fontSize: 64),
+                  textAlign: TextAlign.center,
+                ),
               ),
               // TODO: later we will have an animation here for the countdown, but for right now just click button
               ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
                       return BettingView();
                     }));
                   },
