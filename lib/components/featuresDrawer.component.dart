@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skull_king_scorekeeper/main.dart';
 import 'package:skull_king_scorekeeper/views/extraPanePages/cheatSheet.view.dart';
 import 'package:skull_king_scorekeeper/views/extraPanePages/previousRounds.view.dart';
 import 'package:skull_king_scorekeeper/views/extraPanePages/rules.view.dart';
@@ -48,6 +49,14 @@ Drawer generateGameDrawer(BuildContext context) {
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return SettingsView();
+          }));
+        },
+      ),
+      ListTile(
+        title: const Text('Main Menu'),
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return MyApp();
           }));
         },
       ),
