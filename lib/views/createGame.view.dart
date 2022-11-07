@@ -11,20 +11,40 @@ class _CreateGameViewState extends State<CreateGameView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(title: const Text('Create Game')),
-          body: Column(
-            children: [
-              const Text('Add Yer Pirates!'),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return StartingRoundView();
-                    }));
-                  },
-                  child: const Text('Arrg!'))
-            ],
-          )),
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/background.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Center(
+              child:Column(
+                // crossAxisAlignment: CrossAxisAlignment.stretch,
+
+                children: [
+                  const Text(
+                      'Add Yer Pirates!',
+                  style: TextStyle(fontSize: 40),
+                  textAlign: TextAlign.center,
+                  ),
+
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return StartingRoundView();
+                        }));
+                      },
+                      child: const Text('Arrg!')),
+                  Spacer(),
+                ],
+              )),
+            ),
+          )
+        )
     );
   }
 }

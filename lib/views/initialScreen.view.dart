@@ -23,7 +23,6 @@ class _InitialScreenViewState extends State<InitialScreenView> {
             backgroundColor: Colors.transparent,
               body: Center(
                 child:Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Spacer(
                         flex:2
@@ -44,7 +43,7 @@ class _InitialScreenViewState extends State<InitialScreenView> {
                         style: ElevatedButton.styleFrom(
                             primary: COLOR_LIGHT_BROWN,
                             onPrimary: Colors.black87,
-                            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+                            padding: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
                             textStyle: TextStyle(
                                 fontSize: 15)),
                         onPressed: () {
