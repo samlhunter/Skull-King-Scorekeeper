@@ -3,6 +3,8 @@ import 'package:skull_king_scorekeeper/components/FeaturesDrawer.component.dart'
 import 'package:skull_king_scorekeeper/utils/buttons.dart';
 import 'package:skull_king_scorekeeper/views/enterResults.view.dart';
 
+import '../utils/constants.dart';
+
 class BettingView extends StatefulWidget {
   @override
   _BettingViewState createState() => _BettingViewState();
@@ -31,12 +33,7 @@ class _BettingViewState extends State<BettingView> {
           ),
           drawer: generateGameDrawer(context),
           body: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/background.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
+            decoration: mainDecoration,
             child: Scaffold(
               backgroundColor: Colors.transparent,
                 body: Center(

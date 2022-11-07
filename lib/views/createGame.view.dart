@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skull_king_scorekeeper/utils/buttons.dart';
+import 'package:skull_king_scorekeeper/utils/constants.dart';
 import 'package:skull_king_scorekeeper/views/startingRound.view.dart';
 
 class CreateGameView extends StatefulWidget {
@@ -13,12 +14,7 @@ class _CreateGameViewState extends State<CreateGameView> {
     return MaterialApp(
       home: Scaffold(
         body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/background.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
+          decoration: mainDecoration,
           child: Scaffold(
             backgroundColor: Colors.transparent,
             body: Center(

@@ -16,12 +16,7 @@ class _InitialScreenViewState extends State<InitialScreenView> {
     return MaterialApp(
       home: Scaffold(
         body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/background.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
+          decoration: mainDecoration,
           child: Scaffold(
             backgroundColor: Colors.transparent,
               body: Center(

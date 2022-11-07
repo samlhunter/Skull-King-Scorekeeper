@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:skull_king_scorekeeper/utils/buttons.dart';
 import 'package:skull_king_scorekeeper/views/endOfRound.view.dart';
 
 import '../components/FeaturesDrawer.component.dart';
+import '../utils/constants.dart';
 
 class EnterResultsView extends StatefulWidget {
   @override
@@ -30,80 +32,89 @@ class _EnterResultsViewState extends State<EnterResultsView> {
       home: Scaffold(
           appBar: AppBar(title: Text('Round $roundNumber - Wins')),
           drawer: generateGameDrawer(context),
-          body: Column(
-            children: [
-              const Text(
-                'How\'d you do?',
-                style: TextStyle(fontSize: 30),
+          body: Container(
+            decoration: mainDecoration,
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: Center(
+                child: Column(
+                  children: [
+                    const Text(
+                      'How\'d you do?',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                    Expanded(
+                        child: ListView.separated(
+                          padding: const EdgeInsets.all(8),
+                          itemCount: players.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                              height: 50,
+                              color: Colors.amber[colorCodes[index]],
+                              child: Row(children: [
+                                Text('Player:  ${players[index]}'),
+                                Spacer(
+                                  flex: 3,
+                                ),
+                                Text('Bet:  ${bets[index]}'),
+                                Spacer(
+                                  flex: 1,
+                                ),
+                                Text('Wins:  ${wins[index]}'),
+                                Ink(
+                                  decoration: const ShapeDecoration(
+                                    color: Colors.lightBlue,
+                                    shape: CircleBorder(),
+                                  ),
+                                  child: IconButton(
+                                    icon: const Icon(Icons.add_circle_outline),
+                                    color: Colors.white,
+                                    onPressed: () {
+                                      setState(() {
+                                        if (wins[index] < roundNumber) {
+                                          wins[index] += 1;
+                                        }
+                                      });
+                                    },
+                                  ),
+                                ),
+                                Ink(
+                                  decoration: const ShapeDecoration(
+                                    color: Colors.lightBlue,
+                                    shape: CircleBorder(),
+                                  ),
+                                  child: IconButton(
+                                    icon: const Icon(Icons.remove_circle_outline),
+                                    color: Colors.white,
+                                    onPressed: () {
+                                      setState(() {
+                                        if (wins[index] != 0) {
+                                          wins[index] -= 1;
+                                        }
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ]),
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) =>
+                          const Divider(),
+                        )),
+                    ElevatedButton(
+                        style: mainButton,
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                                return EndOfRoundView();
+                              }));
+                        },
+                        child: const Text('Round Results'))
+                  ],
+                ),
               ),
-              Expanded(
-                  child: ListView.separated(
-                padding: const EdgeInsets.all(8),
-                itemCount: players.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    height: 50,
-                    color: Colors.amber[colorCodes[index]],
-                    child: Row(children: [
-                      Text('Player:  ${players[index]}'),
-                      Spacer(
-                        flex: 3,
-                      ),
-                      Text('Bet:  ${bets[index]}'),
-                      Spacer(
-                        flex: 1,
-                      ),
-                      Text('Wins:  ${wins[index]}'),
-                      Ink(
-                        decoration: const ShapeDecoration(
-                          color: Colors.lightBlue,
-                          shape: CircleBorder(),
-                        ),
-                        child: IconButton(
-                          icon: const Icon(Icons.add_circle_outline),
-                          color: Colors.white,
-                          onPressed: () {
-                            setState(() {
-                              if (wins[index] < roundNumber) {
-                                wins[index] += 1;
-                              }
-                            });
-                          },
-                        ),
-                      ),
-                      Ink(
-                        decoration: const ShapeDecoration(
-                          color: Colors.lightBlue,
-                          shape: CircleBorder(),
-                        ),
-                        child: IconButton(
-                          icon: const Icon(Icons.remove_circle_outline),
-                          color: Colors.white,
-                          onPressed: () {
-                            setState(() {
-                              if (wins[index] != 0) {
-                                wins[index] -= 1;
-                              }
-                            });
-                          },
-                        ),
-                      ),
-                    ]),
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(),
-              )),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return EndOfRoundView();
-                    }));
-                  },
-                  child: const Text('Round Results'))
-            ],
+            ),
           )),
     );
   }
