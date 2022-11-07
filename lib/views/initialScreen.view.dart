@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:skull_king_scorekeeper/utils/constants.dart';
 import 'package:skull_king_scorekeeper/views/createGame.view.dart';
 
+import '../main.dart';
+import '../utils/buttons.dart';
+
 class InitialScreenView extends StatefulWidget {
   @override
   _InitialScreenViewState createState() => _InitialScreenViewState();
@@ -40,12 +43,7 @@ class _InitialScreenViewState extends State<InitialScreenView> {
                     ),
                     Spacer(),
                     ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: COLOR_LIGHT_BROWN,
-                            onPrimary: Colors.black87,
-                            padding: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
-                            textStyle: TextStyle(
-                                fontSize: 15)),
+                        style: mainButton,
                         onPressed: () {
                           Navigator.pop(context);
                           Navigator.push(context,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skull_king_scorekeeper/utils/buttons.dart';
 import 'package:skull_king_scorekeeper/views/startingRound.view.dart';
 
 class CreateGameView extends StatefulWidget {
@@ -25,6 +26,7 @@ class _CreateGameViewState extends State<CreateGameView> {
                 // crossAxisAlignment: CrossAxisAlignment.stretch,
 
                 children: [
+                  Spacer(),
                   const Text(
                       'Add Yer Pirates!',
                   style: TextStyle(fontSize: 40),
@@ -32,6 +34,7 @@ class _CreateGameViewState extends State<CreateGameView> {
                   ),
 
                   ElevatedButton(
+                    style: mainButton,
                       onPressed: () {
                         Navigator.pop(context);
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
