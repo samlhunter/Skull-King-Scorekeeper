@@ -44,73 +44,88 @@ class _BettingViewState extends State<BettingView> {
                       SizedBox(height: 25,),
                       const Text(
                         'Place Yer Bets',
-                        style: TextStyle(fontSize: 30),
+                        style: TextStyle(fontSize: 40),
                       ),
-                      Expanded(
+                      Flexible(
+                        flex: 5,
                           child: ListView.separated(
                             padding: const EdgeInsets.all(8),
                             itemCount: players.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
-                                height: 50,
-                                color: Colors.amber[colorCodes[index]], // TODO change to color
-                                child: Row(children: [
-                                  Text('Player:  ${players[index]}'),
-                                  Spacer(),
-                                  Text('Bet:  ${bets[index]}'),
-                                  Ink(
-                                    decoration: const ShapeDecoration(
-                                      color: Colors.lightBlue,
-                                      shape: CircleBorder(),
-                                    ),
-                                    child: IconButton(
-                                      icon: const Icon(Icons.add_circle_outline),
-                                      color: Colors.white,
-                                      onPressed: () {
-                                        setState(() {
-                                          if (bets[index] < roundNumber) {
-                                            bets[index] += 1;
-                                          }
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                  Ink(
-                                    decoration: const ShapeDecoration(
-                                      color: Colors.lightBlue,
-                                      shape: CircleBorder(),
-                                    ),
-                                    child: IconButton(
-                                      icon: const Icon(Icons.remove_circle_outline),
-                                      color: Colors.white,
-                                      onPressed: () {
-                                        setState(() {
-                                          if (bets[index] > 0) {
-                                            bets[index] -= 1;
-                                          }
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                ]),
+                                child: Column(
+                                  children: [
+                                    if(index == 0) ...[
+                                      Row(
+                                        children: const [
+                                          Text("Player", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                                          Spacer(flex: 9,),
+                                          Text("Bet", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                                          Spacer(flex: 5,),
+                                        ],
+                                      ),
+                                    ],
+                                    Row(children: [
+                                      Text('${players[index]}'),
+                                      Spacer(flex: 8,),
+                                      Text('${bets[index]}'),
+                                      Spacer(flex: 1,),
+                                      Ink(
+                                        decoration: const ShapeDecoration(
+                                          shape: CircleBorder(),
+                                        ),
+                                        child: IconButton(
+                                          icon: const Icon(Icons.add_circle_outline),
+                                          color: Colors.black,
+                                          onPressed: () {
+                                            setState(() {
+                                              if (wins[index] < roundNumber) {
+                                                wins[index] += 1;
+                                              }
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                      Ink(
+                                        decoration: const ShapeDecoration(
+                                          shape: CircleBorder(),
+                                        ),
+                                        child: IconButton(
+                                          icon: const Icon(Icons.remove_circle_outline),
+                                          color: Colors.black,
+                                          onPressed: () {
+                                            setState(() {
+                                              if (wins[index] != 0) {
+                                                wins[index] -= 1;
+                                              }
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    ]),
+                                  ],
+                                ),
                               );
                             },
                             separatorBuilder: (BuildContext context, int index) =>
                             const Divider(),
                           )),
-                      ElevatedButton(
-                        style: mainButton,
-                          onPressed: () {
-                            //update player bet info in presenter
-                            Navigator.pop(context);
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                                  return EnterResultsView();
-                                }));
-                          },
-                          child: const Text('Submit Bets')),
-                      SizedBox(height: 25,),
+                      Flexible(
+                        flex: 1,
+                        child:
+                        ElevatedButton(
+                            style: mainButton,
+                            onPressed: () {
+                              //update player bet info in presenter
+                              Navigator.pop(context);
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                    return EnterResultsView();
+                                  }));
+                            },
+                            child: const Text('Submit Bets')),
 
+                      ),
                     ],
                 )),
             )
