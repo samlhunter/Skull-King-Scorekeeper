@@ -20,7 +20,6 @@ class _CreateGameViewState extends State<CreateGameView> {
             body: Center(
               child:Column(
                 // crossAxisAlignment: CrossAxisAlignment.stretch,
-
                 children: [
                   Spacer(),
                   const Text(

@@ -15,7 +15,10 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(title: const Text('End of Round/Bonuses')),
+          appBar: AppBar(
+              title: const Text('End of Round/Bonuses'),
+            backgroundColor: Colors.black,
+            centerTitle: true,),
           drawer: generateGameDrawer(context),
           body: Container(
             decoration: mainDecoration,
@@ -24,6 +27,8 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
               body:Center(
                 child: Column(
                   children: [
+                    SizedBox(height: 25,),
+
                     const Text('Round 1 Results'),
                     const OutlinedButton(onPressed: null, child: Text('+10')),
                     const OutlinedButton(onPressed: null, child: Text('+20')),
@@ -39,6 +44,7 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                           }));
                         },
                         child: const Text('Next Round!')),
+                    SizedBox(height: 25,),
                   ],
                 ),
               ),

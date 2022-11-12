@@ -65,7 +65,7 @@ class _StartingRoundViewState extends State<StartingRoundView> {
                               return BettingView();
                             }));
                       },
-                      child: const Text('(Continue)')),
+                      child: const Text('Continue')),
                   Spacer(),
                 ],
               ),

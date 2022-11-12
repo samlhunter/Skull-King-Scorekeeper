@@ -30,7 +30,11 @@ class _EnterResultsViewState extends State<EnterResultsView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(title: Text('Round $roundNumber - Wins')),
+          appBar: AppBar(
+            title: Text('Round $roundNumber - Wins'),
+            backgroundColor: Colors.black,
+            centerTitle: true,
+          ),
           drawer: generateGameDrawer(context),
           body: Container(
             decoration: mainDecoration,
@@ -39,6 +43,7 @@ class _EnterResultsViewState extends State<EnterResultsView> {
               body: Center(
                 child: Column(
                   children: [
+                    SizedBox(height: 25,),
                     const Text(
                       'How\'d you do?',
                       style: TextStyle(fontSize: 30),
@@ -110,7 +115,8 @@ class _EnterResultsViewState extends State<EnterResultsView> {
                                 return EndOfRoundView();
                               }));
                         },
-                        child: const Text('Round Results'))
+                        child: const Text('Round Results')),
+                    SizedBox(height: 25,),
                   ],
                 ),
               ),

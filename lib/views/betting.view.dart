@@ -29,7 +29,9 @@ class _BettingViewState extends State<BettingView> {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
-              title: Text('Round $roundNumber - Bets'),
+            title: Text('Round $roundNumber - Bets'),
+            backgroundColor: Colors.black,
+            centerTitle: true,
           ),
           drawer: generateGameDrawer(context),
           body: Container(
@@ -39,6 +41,7 @@ class _BettingViewState extends State<BettingView> {
                 body: Center(
                   child: Column(
                     children: [
+                      SizedBox(height: 25,),
                       const Text(
                         'Place Yer Bets',
                         style: TextStyle(fontSize: 30),
@@ -50,7 +53,7 @@ class _BettingViewState extends State<BettingView> {
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
                                 height: 50,
-                                color: Colors.amber[colorCodes[index]],
+                                color: Colors.amber[colorCodes[index]], // TODO change to color
                                 child: Row(children: [
                                   Text('Player:  ${players[index]}'),
                                   Spacer(),
@@ -106,6 +109,8 @@ class _BettingViewState extends State<BettingView> {
                                 }));
                           },
                           child: const Text('Submit Bets')),
+                      SizedBox(height: 25,),
+
                     ],
                 )),
             )
