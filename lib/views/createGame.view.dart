@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:skull_king_scorekeeper/models/game.models.dart';
 import 'package:skull_king_scorekeeper/utils/buttons.dart';
 import 'package:skull_king_scorekeeper/utils/constants.dart';
 import 'package:skull_king_scorekeeper/views/startingRound.view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:skull_king_scorekeeper/models/player.models.dart';
 
 class CreateGameView extends StatefulWidget {
   @override
@@ -13,10 +16,10 @@ class _CreateGameViewState extends State<CreateGameView> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController textController = TextEditingController();
   String playerName = "";
-  List<String> players = <String>[];
 
   @override
   Widget build(BuildContext context) {
+    var game = context.watch<GameModel>();
     return MaterialApp(
         home: Scaffold(
             body: Container(
@@ -40,14 +43,14 @@ class _CreateGameViewState extends State<CreateGameView> {
                         Expanded(
                             child: ListView.separated(
                           padding: const EdgeInsets.all(8),
-                          itemCount: players.length,
+                          itemCount: game.players.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Container(
                               height: 50,
                               color: Colors.amber,
                               child: Row(children: [
                                 Text(
-                                  'Player:  ${players[index]}',
+                                  'Player:  ${game.players[index].name}',
                                   style: TextStyle(fontSize: 20),
                                 ),
                                 Spacer(),
@@ -60,24 +63,21 @@ class _CreateGameViewState extends State<CreateGameView> {
                                     icon: const Icon(FontAwesomeIcons.trashCan),
                                     color: Colors.white,
                                     onPressed: () {
-                                      setState(() {
-                                        players.removeAt(index);
-                                      });
+                                      game.removePlayerAt(index);
                                     },
                                   ),
                                 ),
                               ]),
                             );
                           },
-                          separatorBuilder: (BuildContext context, int index) =>
-                              const Divider(),
+                          separatorBuilder: (BuildContext context, int index) => const Divider(),
                         )),
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 30.0),
                           child: ElevatedButton(
                               style: mainButton,
                               onPressed: () {
-                                if (players.length < 8) {
+                                if (game.players.length < 8) {
                                   showDialog(
                                       context: context,
                                       builder: (BuildContext context) {
@@ -101,64 +101,36 @@ class _CreateGameViewState extends State<CreateGameView> {
                                               Form(
                                                 key: _formKey,
                                                 child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
+                                                  mainAxisSize: MainAxisSize.min,
                                                   children: <Widget>[
                                                     Padding(
-                                                      padding:
-                                                          EdgeInsets.all(8.0),
+                                                      padding: EdgeInsets.all(8.0),
                                                       child: TextFormField(
-                                                        controller:
-                                                            textController,
-                                                        decoration:
-                                                            InputDecoration(
-                                                          labelText:
-                                                              'Player Name',
+                                                        controller: textController,
+                                                        decoration: InputDecoration(
+                                                          labelText: 'Player Name',
                                                           icon: Icon(
-                                                            FontAwesomeIcons
-                                                                .skullCrossbones,
-                                                            size:
-                                                                30, //Icon Size
-                                                            color: Colors
-                                                                .black, //Color Of Icon
+                                                            FontAwesomeIcons.skullCrossbones,
+                                                            size: 30, //Icon Size
+                                                            color: Colors.black, //Color Of Icon
                                                           ),
                                                         ),
                                                       ),
                                                     ),
                                                     Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
+                                                      padding: const EdgeInsets.all(8.0),
                                                       child: ElevatedButton(
                                                         style: mainButton,
                                                         child: Text("Add"),
                                                         onPressed: () {
-                                                          if (_formKey
-                                                                  .currentState!
-                                                                  .validate() &&
-                                                              textController
-                                                                      .text
-                                                                      .length >
-                                                                  0) {
-                                                            setState(() {
-                                                              playerName =
-                                                                  textController
-                                                                      .text;
-                                                              players.add(
-                                                                  playerName);
-                                                            });
-                                                            _formKey
-                                                                .currentState!
-                                                                .save();
+                                                          if (_formKey.currentState!.validate() && textController.text.length > 0) {
+                                                            game.addPlayer(Player(textController.text));
 
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                            _formKey
-                                                                .currentState!
-                                                                .reset();
-                                                            textController
-                                                                .clear();
+                                                            _formKey.currentState!.save();
+
+                                                            Navigator.of(context).pop();
+                                                            _formKey.currentState!.reset();
+                                                            textController.clear();
                                                           }
                                                         },
                                                       ),
@@ -181,8 +153,7 @@ class _CreateGameViewState extends State<CreateGameView> {
 
                                   AlertDialog alert = AlertDialog(
                                     title: Text("Ahoy there!"),
-                                    content: Text(
-                                        "Sorry, You can't add more than 8 members to your crew!"),
+                                    content: Text("Sorry, You can't add more than 8 members to your crew!"),
                                     actions: [
                                       okButton,
                                     ],
@@ -202,10 +173,8 @@ class _CreateGameViewState extends State<CreateGameView> {
                         ElevatedButton(
                             style: mainButton,
                             onPressed: () {
-                              //TODO: send names to presenter to be created and stored in cache
                               Navigator.pop(context);
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) {
                                 return StartingRoundView();
                               }));
                             },
