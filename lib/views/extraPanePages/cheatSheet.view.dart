@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skull_king_scorekeeper/utils/constants.dart';
+import 'package:skull_king_scorekeeper/views/betting.view.dart';
 import 'package:skull_king_scorekeeper/views/createGame.view.dart';
 import 'package:skull_king_scorekeeper/views/enterResults.view.dart';
 
@@ -70,6 +71,10 @@ class _CheatSheetViewState extends State<CheatSheetView> {
                         style: mainButton,
                         onPressed: () {
                           Navigator.pop(context);
+                           Navigator.push(context, 
+                              MaterialPageRoute(builder: (context) {
+                                return (BettingView());
+                              }));
                           
                         },
                         child: const Text('Return to Game')),
