@@ -37,7 +37,7 @@ class _CheatSheetViewState extends State<CheatSheetView> {
                     ),
                     Spacer(),
                     const Text(
-                      'Black cards defeat all other suits',
+                      'Black (Jolly Roger) cards defeat all other suits',
                       style: TextStyle(fontSize: 25),
                       textAlign: TextAlign.center,
                     ),
