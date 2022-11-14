@@ -27,27 +27,29 @@ class _BettingViewState extends State<BettingView> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('Round $roundNumber - Bets'),
-            backgroundColor: Colors.black,
-            centerTitle: true,
-          ),
-          drawer: generateGameDrawer(context),
-          body: Container(
-            decoration: mainDecoration,
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-                body: Center(
-                  child: Column(
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text('Round $roundNumber - Bets'),
+              backgroundColor: Colors.black,
+              centerTitle: true,
+            ),
+            drawer: generateGameDrawer(context),
+            body: Container(
+                decoration: mainDecoration,
+                child: Scaffold(
+                  backgroundColor: Colors.transparent,
+                  body: Center(
+                      child: Column(
                     children: [
-                      SizedBox(height: 25,),
+                      SizedBox(
+                        height: 25,
+                      ),
                       const Text(
                         'Place Yer Bets',
                         style: TextStyle(fontSize: 40),
                       ),
                       Flexible(
-                        flex: 5,
+                          flex: 5,
                           child: ListView.separated(
                             padding: const EdgeInsets.all(8),
                             itemCount: players.length,
@@ -55,32 +57,51 @@ class _BettingViewState extends State<BettingView> {
                               return Container(
                                 child: Column(
                                   children: [
-                                    if(index == 0) ...[
+                                    if (index == 0) ...[
                                       Row(
                                         children: const [
-                                          Text("Player", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
-                                          Spacer(flex: 9,),
-                                          Text("Bet", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
-                                          Spacer(flex: 5,),
+                                          Text(
+                                            "Player",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15),
+                                          ),
+                                          Spacer(
+                                            flex: 9,
+                                          ),
+                                          Text(
+                                            "Bet",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15),
+                                          ),
+                                          Spacer(
+                                            flex: 5,
+                                          ),
                                         ],
                                       ),
                                     ],
                                     Row(children: [
                                       Text('${players[index]}'),
-                                      Spacer(flex: 8,),
+                                      Spacer(
+                                        flex: 8,
+                                      ),
                                       Text('${bets[index]}'),
-                                      Spacer(flex: 1,),
+                                      Spacer(
+                                        flex: 1,
+                                      ),
                                       Ink(
                                         decoration: const ShapeDecoration(
                                           shape: CircleBorder(),
                                         ),
                                         child: IconButton(
-                                          icon: const Icon(Icons.add_circle_outline),
+                                          icon: const Icon(
+                                              Icons.add_circle_outline),
                                           color: Colors.black,
                                           onPressed: () {
                                             setState(() {
-                                              if (wins[index] < roundNumber) {
-                                                wins[index] += 1;
+                                              if (bets[index] < roundNumber) {
+                                                bets[index] += 1;
                                               }
                                             });
                                           },
@@ -91,12 +112,13 @@ class _BettingViewState extends State<BettingView> {
                                           shape: CircleBorder(),
                                         ),
                                         child: IconButton(
-                                          icon: const Icon(Icons.remove_circle_outline),
+                                          icon: const Icon(
+                                              Icons.remove_circle_outline),
                                           color: Colors.black,
                                           onPressed: () {
                                             setState(() {
-                                              if (wins[index] != 0) {
-                                                wins[index] -= 1;
+                                              if (bets[index] != 0) {
+                                                bets[index] -= 1;
                                               }
                                             });
                                           },
@@ -107,29 +129,26 @@ class _BettingViewState extends State<BettingView> {
                                 ),
                               );
                             },
-                            separatorBuilder: (BuildContext context, int index) =>
-                            const Divider(),
+                            separatorBuilder:
+                                (BuildContext context, int index) =>
+                                    const Divider(),
                           )),
                       Flexible(
                         flex: 1,
-                        child:
-                        ElevatedButton(
+                        child: ElevatedButton(
                             style: mainButton,
                             onPressed: () {
                               //update player bet info in presenter
                               Navigator.pop(context);
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
-                                    return EnterResultsView();
-                                  }));
+                                return EnterResultsView();
+                              }));
                             },
                             child: const Text('Submit Bets')),
-
                       ),
                     ],
-                )),
-            )
-          )
-      ));
+                  )),
+                ))));
   }
 }
