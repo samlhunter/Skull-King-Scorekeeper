@@ -74,43 +74,52 @@ class _EnterResultsViewState extends State<EnterResultsView> {
                                       ],
                                     ),
                                   ],
-                                  Row(children: [
-                                    Text(game.players[index].name),
-                                    Spacer(
-                                      flex: 3,
-                                    ),
-                                    Text('${game.players[index].rounds[game.roundNumber - 1].bet}'),
-                                    Spacer(
-                                      flex: 1,
-                                    ),
-                                    Text('${game.players[index].rounds[game.roundNumber - 1].won}'),
-                                    Ink(
-                                      decoration: const ShapeDecoration(
-                                        shape: CircleBorder(),
+                                  Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white54.withOpacity(0.4),
+                                          border: Border.all(
+                                            color: Colors.white54,
+                                          ),
+                                          borderRadius: BorderRadius.all(Radius.circular(10))
                                       ),
-                                      child: IconButton(
-                                        icon: const Icon(Icons.add_circle_outline),
-                                        color: Colors.black,
-                                        onPressed: () {
-                                          game.players[index].rounds[game.roundNumber - 1].incrementWon();
-                                          game.notifyListeners(); // TODO fix this hack later!
-                                        },
-                                      ),
-                                    ),
-                                    Ink(
-                                      decoration: const ShapeDecoration(
-                                        shape: CircleBorder(),
-                                      ),
-                                      child: IconButton(
-                                        icon: const Icon(Icons.remove_circle_outline),
-                                        color: Colors.black,
-                                        onPressed: () {
-                                          game.players[index].rounds[game.roundNumber - 1].decrementWon();
-                                          game.notifyListeners(); // TODO fix this hack later!
-                                        },
-                                      ),
-                                    ),
-                                  ]),
+                                      child:Row(children: [
+                                        Text(game.players[index].name),
+                                        Spacer(
+                                          flex: 3,
+                                        ),
+                                        Text('${game.players[index].rounds[game.roundNumber - 1].bet}'),
+                                        Spacer(
+                                          flex: 1,
+                                        ),
+                                        Text('${game.players[index].rounds[game.roundNumber - 1].won}'),
+                                        Ink(
+                                          decoration: const ShapeDecoration(
+                                            shape: CircleBorder(),
+                                          ),
+                                          child: IconButton(
+                                            icon: const Icon(Icons.add_circle_outline),
+                                            color: Colors.black,
+                                            onPressed: () {
+                                              game.players[index].rounds[game.roundNumber - 1].incrementWon();
+                                              game.notifyListeners(); // TODO fix this hack later!
+                                            },
+                                          ),
+                                        ),
+                                        Ink(
+                                          decoration: const ShapeDecoration(
+                                            shape: CircleBorder(),
+                                          ),
+                                          child: IconButton(
+                                            icon: const Icon(Icons.remove_circle_outline),
+                                            color: Colors.black,
+                                            onPressed: () {
+                                              game.players[index].rounds[game.roundNumber - 1].decrementWon();
+                                              game.notifyListeners(); // TODO fix this hack later!
+                                            },
+                                          ),
+                                        ),
+                                      ]),
+                                  ),
                                 ],
                               ),
                             );

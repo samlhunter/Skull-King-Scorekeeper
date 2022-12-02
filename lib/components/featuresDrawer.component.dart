@@ -22,7 +22,7 @@ Drawer generateGameDrawer(BuildContext context) {
               height: 250,
               child: DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.black87,
+                  color: Colors.black,
                 ),
                 child:Align(
                   alignment: Alignment.center,
@@ -31,7 +31,7 @@ Drawer generateGameDrawer(BuildContext context) {
               ),
             ),
             ListTile(
-              title: const Text('Previous Rounds' , style: TextStyle(color: Colors.black87, fontSize: 20)),
+              title: const Text('Previous Rounds' , style: TextStyle(color: Colors.black87, fontSize: 23)),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return PreviousRoundsView();
@@ -39,7 +39,7 @@ Drawer generateGameDrawer(BuildContext context) {
               },
             ),
             ListTile(
-              title: const Text('Cheat Sheet', style: TextStyle(color: Colors.black87, fontSize: 20)),
+              title: const Text('Cheat Sheet', style: TextStyle(color: Colors.black87, fontSize: 23)),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return CheatSheetView();
@@ -47,7 +47,7 @@ Drawer generateGameDrawer(BuildContext context) {
               },
             ),
             ListTile(
-              title: const Text('Rules', style: TextStyle(color: Colors.black87, fontSize: 20,)),
+              title: const Text('Rules', style: TextStyle(color: Colors.black87, fontSize: 23,)),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return RulesView();
@@ -55,7 +55,7 @@ Drawer generateGameDrawer(BuildContext context) {
               },
             ),
             ListTile(
-              title: const Text('Settings', style: TextStyle(color: Colors.black87, fontSize: 20)),
+              title: const Text('Settings', style: TextStyle(color: Colors.black87, fontSize: 23)),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return SettingsView();
@@ -63,7 +63,7 @@ Drawer generateGameDrawer(BuildContext context) {
               },
             ),
             ListTile(
-              title: const Text('Main Menu', style: TextStyle(color: Colors.black87, fontSize: 20)),
+              title: const Text('Main Menu', style: TextStyle(color: Colors.black87, fontSize: 23)),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return MyApp();

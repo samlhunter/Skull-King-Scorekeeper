@@ -58,7 +58,7 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                                       ),
                                       Spacer(
-                                        flex: 9,
+                                        flex: 15,
                                       ),
                                       Text(
                                         "Bonus",
@@ -77,37 +77,47 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                                     ],
                                   ),
                                 ],
-                                Row(children: [
-                                  Text(game.players[index].name),
-                                  Spacer(
-                                    flex: 3,
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.white54.withOpacity(0.4),
+                                      border: Border.all(
+                                        color: Colors.white54,
+                                      ),
+                                      borderRadius: BorderRadius.all(Radius.circular(10))
                                   ),
-                                  Text('${game.players[index].calcRoundBonus(game.roundNumber - 1)}'),
-                                  Spacer(
-                                    flex: 1,
-                                  ),
-                                  Text('${game.players[index].calcScore()}'),
-                                  Ink(
-                                    decoration: const ShapeDecoration(
-                                      shape: CircleBorder(),
+                                  child: Row(children: [
+                                    Text(game.players[index].name),
+                                    Spacer(
+                                      flex: 3,
                                     ),
-                                    child: IconButton(
-                                      icon: selectedPlayer != index
-                                          ? const Icon(Icons.radio_button_off)
-                                          : const Icon(Icons.radio_button_checked),
-                                      color: Colors.black,
-                                      onPressed: () {
-                                        setState(() {
-                                          if (selectedPlayer == index) {
-                                            selectedPlayer = -1;
-                                          } else {
-                                            selectedPlayer = index;
-                                          }
-                                        });
-                                      },
+                                    Text('${game.players[index].calcRoundBonus(game.roundNumber - 1)}'),
+                                    Spacer(
+                                      flex: 1,
                                     ),
-                                  ),
-                                ]),
+                                    Text('${game.players[index].calcScore()}'),
+                                    Ink(
+                                      decoration: const ShapeDecoration(
+                                        shape: CircleBorder(),
+                                      ),
+                                      child: IconButton(
+                                        icon: selectedPlayer != index
+                                            ? const Icon(Icons.radio_button_off)
+                                            : const Icon(Icons.radio_button_checked),
+                                        color: Colors.black,
+                                        onPressed: () {
+                                          setState(() {
+                                            if (selectedPlayer == index) {
+                                              selectedPlayer = -1;
+                                            } else {
+                                              selectedPlayer = index;
+                                            }
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ]),
+                                ),
+
                               ],
                             ),
                           );
@@ -122,27 +132,33 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             OutlinedButton(
+                                style: OutlinedButton.styleFrom(backgroundColor: Colors.white54.withOpacity(0.4)),
+
                                 onPressed: () {
                                   if (selectedPlayer != -1) {
                                     game.players[selectedPlayer].rounds[game.roundNumber - 1].miscellaneousPoints += 10;
                                     game.notifyListeners();
                                   }
                                 },
-                                child: const Text('+10')),
+                                child: const Text('+10', style: TextStyle(fontSize: 15, color: Colors.black),)),
                             OutlinedButton(
+                                style: OutlinedButton.styleFrom(backgroundColor: Colors.white54.withOpacity(0.4)),
+
                                 onPressed: () {
                                   if (selectedPlayer != -1) {
                                     game.players[selectedPlayer].rounds[game.roundNumber - 1].miscellaneousPoints += 20;
                                     game.notifyListeners();
                                   }
                                 },
-                                child: const Text('+20')),
+                                child: const Text('+20',style: TextStyle(fontSize: 15, color: Colors.black),)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             OutlinedButton(
+                                style: OutlinedButton.styleFrom(backgroundColor: Colors.white54.withOpacity(0.4)),
+
                                 onPressed: () {
                                   if (selectedPlayer != -1) {
                                     PlayerRoundModel round = game.players[selectedPlayer].rounds[game.roundNumber - 1];
@@ -150,8 +166,10 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                                     game.notifyListeners();
                                   }
                                 },
-                                child: const Text('Mermaid +20')),
+                                child: const Text('Mermaid +20',style: TextStyle(fontSize: 15, color: Colors.black),)),
                             OutlinedButton(
+                                style: OutlinedButton.styleFrom(backgroundColor: Colors.white54.withOpacity(0.4)),
+
                                 onPressed: () {
                                   if (selectedPlayer != -1) {
                                     PlayerRoundModel round = game.players[selectedPlayer].rounds[game.roundNumber - 1];
@@ -159,8 +177,9 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                                     game.notifyListeners();
                                   }
                                 },
-                                child: const Text('Pirate +30')),
+                                child: const Text('Pirate +30',style: TextStyle(fontSize: 15, color: Colors.black),)),
                             OutlinedButton(
+                                style: OutlinedButton.styleFrom(backgroundColor: Colors.white54.withOpacity(0.4)),
                                 onPressed: () {
                                   if (selectedPlayer != -1) {
                                     PlayerRoundModel round = game.players[selectedPlayer].rounds[game.roundNumber - 1];
@@ -168,7 +187,7 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                                     game.notifyListeners();
                                   }
                                 },
-                                child: const Text('Skull King +50')),
+                                child: const Text('Skull King +50',style: TextStyle(fontSize: 15, color: Colors.black),)),
                           ],
                         ),
                       ],

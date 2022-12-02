@@ -67,42 +67,53 @@ class _BettingViewState extends State<BettingView> {
                                         ],
                                       ),
                                     ],
-                                    Row(children: [
-                                      Text(game.players[index].name),
-                                      Spacer(
-                                        flex: 8,
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white54.withOpacity(0.4),
+                                          border: Border.all(
+                                            color: Colors.white54,
+                                          ),
+                                          borderRadius: BorderRadius.all(Radius.circular(10))
                                       ),
-                                      Text('${game.players[index].rounds[game.roundNumber - 1].bet}'),
-                                      Spacer(
-                                        flex: 1,
-                                      ),
-                                      Ink(
-                                        decoration: const ShapeDecoration(
-                                          shape: CircleBorder(),
+                                      child:Row(children: [
+                                        Text(game.players[index].name),
+                                        Spacer(
+                                          flex: 8,
                                         ),
-                                        child: IconButton(
-                                          icon: const Icon(Icons.add_circle_outline),
-                                          color: Colors.black,
-                                          onPressed: () {
-                                            game.players[index].rounds[game.roundNumber - 1].incrementBet();
-                                            game.notifyListeners(); // TODO fix this hack later!
-                                          },
+                                        Text('${game.players[index].rounds[game.roundNumber - 1].bet}'),
+                                        Spacer(
+                                          flex: 1,
                                         ),
-                                      ),
-                                      Ink(
-                                        decoration: const ShapeDecoration(
-                                          shape: CircleBorder(),
+                                        Ink(
+                                          decoration: const ShapeDecoration(
+                                            shape: CircleBorder(),
+                                          ),
+                                          child: IconButton(
+                                            icon: const Icon(Icons.add_circle_outline),
+                                            color: Colors.black,
+                                            onPressed: () {
+                                              game.players[index].rounds[game.roundNumber - 1].incrementBet();
+                                              game.notifyListeners(); // TODO fix this hack later!
+                                            },
+                                          ),
                                         ),
-                                        child: IconButton(
-                                          icon: const Icon(Icons.remove_circle_outline),
-                                          color: Colors.black,
-                                          onPressed: () {
-                                            game.players[index].rounds[game.roundNumber - 1].decrementBet();
-                                            game.notifyListeners(); // TODO fix this hack later!
-                                          },
+                                        Ink(
+                                          decoration: const ShapeDecoration(
+                                            shape: CircleBorder(),
+                                          ),
+                                          child: IconButton(
+                                            icon: const Icon(Icons.remove_circle_outline),
+                                            color: Colors.black,
+                                            onPressed: () {
+                                              game.players[index].rounds[game.roundNumber - 1].decrementBet();
+                                              game.notifyListeners(); // TODO fix this hack later!
+                                            },
+                                          ),
                                         ),
-                                      ),
-                                    ]),
+                                      ]),
+                                    ),
+
+
                                   ],
                                 ),
                               );

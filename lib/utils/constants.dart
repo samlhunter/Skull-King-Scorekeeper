@@ -15,7 +15,7 @@ final BoxDecoration mainDecoration = BoxDecoration(
 
 final BoxDecoration secondaryDecoration = BoxDecoration(
   image: DecorationImage(
-    colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
+    colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
 
     image: AssetImage('assets/drawerbackground.png'),
     fit: BoxFit.cover,
