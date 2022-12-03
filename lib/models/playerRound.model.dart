@@ -9,6 +9,8 @@ class PlayerRoundModel extends ChangeNotifier {
   bool gotPirateBonus = false;
   bool gotSkullKing = false;
 
+  Stack bonusStack = Stack<int>();
+
   void incrementBet() {
     bet += 1;
     notifyListeners();
@@ -35,11 +37,48 @@ class PlayerRoundModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  set setGotMermaid(gotMermaid) => this.gotMermaid = gotMermaid;
+  void updateBonus(int bonus) {
+    bonusStack.push(bonus);
+    miscellaneousPoints += bonus;
+    notifyListeners();
+  }
 
-  set setMiscellaneousPoints(miscellaneousPoints) => this.miscellaneousPoints = miscellaneousPoints;
+  void undoBonus() {
+    if (bonusStack.isEmpty == false) {
+      int bonus = bonusStack.pop();
+      miscellaneousPoints -= bonus;
+      notifyListeners();
+    }
+  }
 
-  set setGotPirateBonus(gotPirateBonus) => this.gotPirateBonus = gotPirateBonus;
+  //set setGotMermaid(gotMermaid) => this.gotMermaid = gotMermaid;
 
-  set setGotSkullKing(gotSkullKing) => this.gotSkullKing = gotSkullKing;
+  //set setMiscellaneousPoints(miscellaneousPoints) => this.miscellaneousPoints = miscellaneousPoints;
+
+  //set setGotPirateBonus(gotPirateBonus) => this.gotPirateBonus = gotPirateBonus;
+
+  //set setGotSkullKing(gotSkullKing) => this.gotSkullKing = gotSkullKing;
+
+  void resetStack() {
+    while (bonusStack.isEmpty == false) {
+      bonusStack.pop();
+    }
+  }
+}
+
+class Stack<E> {
+  Stack() : _storage = <E>[];
+  final List<E> _storage;
+
+  @override
+  String toString() {
+    return '--- Top ---\n'
+        '${_storage.reversed.join('\n')}'
+        '\n-----------';
+  }
+
+  bool get isEmpty => _storage.isEmpty;
+
+  void push(E element) => _storage.add(element);
+  E pop() => _storage.removeLast();
 }

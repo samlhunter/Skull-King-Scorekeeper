@@ -21,8 +21,10 @@ class Player extends ChangeNotifier {
         if (round.bet == 0) {
           score += 10 * (i + 1);
         } else {
-          score += round.bet * (i + 1);
+          score += round.bet * 20;
         }
+      } else {
+        score -= (round.bet - round.won).abs() * 10;
       }
 
       score += calcRoundBonus(i);
@@ -31,8 +33,15 @@ class Player extends ChangeNotifier {
     return score;
   }
 
-  // calculate the bonus points for the user for a particular round
   int calcRoundBonus(int roundIndex) {
+    PlayerRoundModel round = rounds[roundIndex];
+    int score = 0;
+    score += round.miscellaneousPoints;
+    return score;
+  }
+
+  // calculate the bonus points for the user for a particular round
+  /*int calcRoundBonus(int roundIndex) {
     PlayerRoundModel round = rounds[roundIndex];
     int score = 0;
     score += round.miscellaneousPoints;
@@ -46,7 +55,7 @@ class Player extends ChangeNotifier {
       score += 50;
     }
     return score;
-  }
+  }*/
 
   // String get getName => name;
   // set setName(String name) => this.name = name;
