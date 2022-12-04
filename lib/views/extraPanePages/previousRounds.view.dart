@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skull_king_scorekeeper/utils/constants.dart';
 
 class PreviousRoundsView extends StatefulWidget {
   @override
@@ -10,17 +11,13 @@ class _PreviousRoundsViewState extends State<PreviousRoundsView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(title: const Text('Previous Rounds')),
-          body: Column(
-            children: [
-              const Text('Previous Rounds'),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Back to Game'))
-            ],
-          )),
+          body: Container(
+              decoration: mainDecoration,
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                body: Center(
+                )
+              ))),
     );
   }
 }
