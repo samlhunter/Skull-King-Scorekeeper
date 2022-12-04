@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:skull_king_scorekeeper/models/game.models.dart';
 import 'package:skull_king_scorekeeper/utils/buttons.dart';
 import 'package:skull_king_scorekeeper/utils/constants.dart';
 import 'package:skull_king_scorekeeper/views/startingRound.view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:skull_king_scorekeeper/models/player.models.dart';
 
 class CreateGameView extends StatefulWidget {
   @override
@@ -13,10 +16,10 @@ class _CreateGameViewState extends State<CreateGameView> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController textController = TextEditingController();
   String playerName = "";
-  List<String> players = <String>[];
 
   @override
   Widget build(BuildContext context) {
+    var game = context.watch<GameModel>();
     return MaterialApp(
         home: Scaffold(
             body: Container(
@@ -29,8 +32,7 @@ class _CreateGameViewState extends State<CreateGameView> {
                     backgroundColor: Colors.transparent,
                     body: Center(
                         child: Column(
-                      // crossAxisAlignment: CrossAxisAlignment.stretch,
-
+                      //crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         const Text(
                           'Add Yer Pirates!',
@@ -40,29 +42,28 @@ class _CreateGameViewState extends State<CreateGameView> {
                         Expanded(
                             child: ListView.separated(
                           padding: const EdgeInsets.all(8),
-                          itemCount: players.length,
+                          itemCount: game.players.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Container(
+                              //decoration: mainDecoration,
                               height: 50,
-                              color: Colors.amber,
+                              color: Colors.transparent,
                               child: Row(children: [
                                 Text(
-                                  'Player:  ${players[index]}',
+                                  'Player:  ${game.players[index].name}',
                                   style: TextStyle(fontSize: 20),
                                 ),
                                 Spacer(),
                                 Ink(
                                   decoration: const ShapeDecoration(
-                                    color: Colors.lightBlue,
+                                    color: Colors.black,
                                     shape: CircleBorder(),
                                   ),
                                   child: IconButton(
                                     icon: const Icon(FontAwesomeIcons.trashCan),
                                     color: Colors.white,
                                     onPressed: () {
-                                      setState(() {
-                                        players.removeAt(index);
-                                      });
+                                      game.removePlayerAt(index);
                                     },
                                   ),
                                 ),
@@ -70,14 +71,16 @@ class _CreateGameViewState extends State<CreateGameView> {
                             );
                           },
                           separatorBuilder: (BuildContext context, int index) =>
-                              const Divider(),
+                              const Divider(
+                            color: Colors.black,
+                          ),
                         )),
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 30.0),
                           child: ElevatedButton(
                               style: mainButton,
                               onPressed: () {
-                                if (players.length < 8) {
+                                if (game.players.length < 8) {
                                   showDialog(
                                       context: context,
                                       builder: (BuildContext context) {
@@ -140,13 +143,10 @@ class _CreateGameViewState extends State<CreateGameView> {
                                                                       .text
                                                                       .length >
                                                                   0) {
-                                                            setState(() {
-                                                              playerName =
-                                                                  textController
-                                                                      .text;
-                                                              players.add(
-                                                                  playerName);
-                                                            });
+                                                            game.addPlayer(Player(
+                                                                textController
+                                                                    .text));
+
                                                             _formKey
                                                                 .currentState!
                                                                 .save();
@@ -202,7 +202,6 @@ class _CreateGameViewState extends State<CreateGameView> {
                         ElevatedButton(
                             style: mainButton,
                             onPressed: () {
-                              //TODO: send names to presenter to be created and stored in cache
                               Navigator.pop(context);
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {

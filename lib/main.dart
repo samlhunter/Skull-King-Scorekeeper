@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:skull_king_scorekeeper/utils/constants.dart';
+import 'package:provider/provider.dart';
+import 'package:skull_king_scorekeeper/models/game.models.dart';
 import 'package:skull_king_scorekeeper/views/initialScreen.view.dart';
 
 void main() {
@@ -11,12 +12,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Skull King Scorekeeper',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider(
+      create: (context) => GameModel(),
+      child: MaterialApp(
+        title: 'Skull King Scorekeeper',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: InitialScreenView(),
       ),
-      home: InitialScreenView(),
     );
   }
 }

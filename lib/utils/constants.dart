@@ -12,4 +12,13 @@ final BoxDecoration mainDecoration = BoxDecoration(
   ),
 );
 
+
+final BoxDecoration secondaryDecoration = BoxDecoration(
+  image: DecorationImage(
+    colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
+
+    image: AssetImage('assets/drawerbackground.png'),
+    fit: BoxFit.cover,
+  ),
+);
 //TODO add fonts here kind of as shown in https://www.youtube.com/watch?v=Y6xAQVXkhLA

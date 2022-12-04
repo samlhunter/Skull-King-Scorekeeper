@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:skull_king_scorekeeper/models/game.models.dart';
 import 'package:skull_king_scorekeeper/utils/constants.dart';
 import 'package:skull_king_scorekeeper/views/createGame.view.dart';
 
-import '../main.dart';
 import '../utils/buttons.dart';
 
 class InitialScreenView extends StatefulWidget {
@@ -15,16 +16,14 @@ class _InitialScreenViewState extends State<InitialScreenView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Container(
-          decoration: mainDecoration,
-          child: Scaffold(
-            backgroundColor: Colors.transparent,
-              body: Center(
-                child:Column(
+          body: Container(
+              decoration: mainDecoration,
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                body: Center(
+                    child: Column(
                   children: [
-                    Spacer(
-                        flex:2
-                    ),
+                    Spacer(flex: 2),
                     const Text(
                       'Welcome to Skull King Scorekeeper!',
                       style: TextStyle(fontSize: 40),
@@ -41,22 +40,19 @@ class _InitialScreenViewState extends State<InitialScreenView> {
                         style: mainButton,
                         onPressed: () {
                           Navigator.pop(context);
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                                return CreateGameView();
-                              }));
+                          var game = context.read<GameModel>();
+                          game.restartGame();
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return CreateGameView();
+                          }));
                         },
                         child: const Text('Create New Game')),
                     OutlinedButton(
-                        onPressed: null,
-                        child: Text(
-                            'Continue Previous Game')), // null onPressed == disabled button
+                        onPressed: null, child: Text('Continue Previous Game')), // null onPressed == disabled button
                     Spacer()
                   ],
                 )),
-              )
-        )
-      ),
+              ))),
     );
   }
 }
