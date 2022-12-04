@@ -26,7 +26,7 @@ class _PreviousRoundsViewState extends State<PreviousRoundsView> {
           child: Table(
             defaultColumnWidth: FixedColumnWidth(120.0),
             border: TableBorder.all(color: Colors.black, style: BorderStyle.solid, width: 2),
-            //    itemCount: game.players.length,
+                //itemCount: game.players.length,
             children: [
               TableRow(children: [
                  Column(children: [
@@ -35,37 +35,29 @@ class _PreviousRoundsViewState extends State<PreviousRoundsView> {
                 Column(children: [
                   Text('Website', style: TextStyle(fontSize: 20.0))
                 ]),
-                Column(children: [
-                  Text('Tutorial', style: TextStyle(fontSize: 20.0))
-                ]),
-                Column(children: [
-                  Text('Review', style: TextStyle(fontSize: 20.0))
-                ]),
               ]),
               TableRow(children: [
-                Column(children: [Text('Javatpoint')]),
-                Column(children: [Text('Flutter')]),
-                Column(children: [Text('5*')]),
-                 Column(children: [Text('5*')]),
+                Column(children: [Text('1')]),
+                Column(children: [Text('Javatpoint')]),//This will be teh score of player [0]
               ]),
-              TableRow(children: [
-                Column(children: [Text('Javatpoint')]),
-                Column(children: [Text('MySQL')]),
-                Column(children: [Text('5*')]),
-                 Column(children: [Text('5*')]),
-              ]),
-              TableRow(children: [
-                Column(children: [Text('Javatpoint')]),
-                Column(children: [Text('ReactJS')]),
-                Column(children: [Text('5*')]),
-                 Column(children: [Text('5*')]),
-              ]),
-               TableRow(children: [
-                Column(children: [Text('Javatpoint')]),
-                Column(children: [Text('ReactJS')]),
-                Column(children: [Text('5*')]),
-                 Column(children: [Text('5*')]),
-              ]),
+              // TableRow(children: [
+              //   Column(children: [Text('Javatpoint')]),
+              //   Column(children: [Text('MySQL')]),
+              //   Column(children: [Text('5*')]),
+              //    Column(children: [Text('5*')]),
+              // ]),
+              // TableRow(children: [
+              //   Column(children: [Text('Javatpoint')]),
+              //   Column(children: [Text('ReactJS')]),
+              //   Column(children: [Text('5*')]),
+              //    Column(children: [Text('5*')]),
+              // ]),
+              //  TableRow(children: [
+              //   Column(children: [Text('Javatpoint')]),
+              //   Column(children: [Text('ReactJS')]),
+              //   Column(children: [Text('5*')]),
+              //    Column(children: [Text('5*')]),
+              // ]),
             ],
           ),
         ),
