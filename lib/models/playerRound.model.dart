@@ -42,9 +42,11 @@ class PlayerRoundModel extends ChangeNotifier {
   }
 
   void updateBonus(int bonus) {
-    bonusStack.push(bonus);
-    miscellaneousPoints += bonus;
-    notifyListeners();
+    if (bet == won) {
+      bonusStack.push(bonus);
+      miscellaneousPoints += bonus;
+      notifyListeners();
+    }
   }
 
   void undoBonus() {

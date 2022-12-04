@@ -23,6 +23,7 @@ class Player extends ChangeNotifier {
         } else {
           score += round.bet * 20;
         }
+        score += calcRoundBonus(i);
       } else {
         if (round.bet == 0) {
           score -= 10 * (i + 1);
@@ -30,8 +31,6 @@ class Player extends ChangeNotifier {
           score -= (round.bet - round.won).abs() * 10;
         }
       }
-
-      score += calcRoundBonus(i);
     }
 
     return score;
