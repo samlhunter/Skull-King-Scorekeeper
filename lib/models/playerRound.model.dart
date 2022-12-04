@@ -11,8 +11,10 @@ class PlayerRoundModel extends ChangeNotifier {
 
   Stack bonusStack = Stack<int>();
 
-  void incrementBet() {
-    bet += 1;
+  void incrementBet(roundNumber) {
+    if (bet < roundNumber) {
+      bet += 1;
+    }
     notifyListeners();
   }
 
@@ -24,8 +26,10 @@ class PlayerRoundModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void incrementWon() {
-    won += 1;
+  void incrementWon(roundNumber) {
+    if (won < roundNumber) {
+      won += 1;
+    }
     notifyListeners();
   }
 
