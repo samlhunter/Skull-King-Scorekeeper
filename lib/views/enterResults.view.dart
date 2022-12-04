@@ -52,21 +52,27 @@ class _EnterResultsViewState extends State<EnterResultsView> {
                                       children: const [
                                         Text(
                                           "Player",
-                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
                                         ),
                                         Spacer(
                                           flex: 9,
                                         ),
                                         Text(
                                           "Bet",
-                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
                                         ),
                                         Spacer(
                                           flex: 2,
                                         ),
                                         Text(
                                           "Wins",
-                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
                                         ),
                                         Spacer(
                                           flex: 5,
@@ -75,56 +81,65 @@ class _EnterResultsViewState extends State<EnterResultsView> {
                                     ),
                                   ],
                                   Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white54.withOpacity(0.4),
-                                          border: Border.all(
-                                            color: Colors.white54,
-                                          ),
-                                          borderRadius: BorderRadius.all(Radius.circular(10))
+                                    decoration: BoxDecoration(
+                                        color: Colors.white54.withOpacity(0.4),
+                                        border: Border.all(
+                                          color: Colors.white54,
+                                        ),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10))),
+                                    child: Row(children: [
+                                      Text(game.players[index].name),
+                                      Spacer(
+                                        flex: 3,
                                       ),
-                                      child:Row(children: [
-                                        Text(game.players[index].name),
-                                        Spacer(
-                                          flex: 3,
+                                      Text(
+                                          '${game.players[index].rounds[game.roundNumber - 1].bet}'),
+                                      Spacer(
+                                        flex: 1,
+                                      ),
+                                      Text(
+                                          '${game.players[index].rounds[game.roundNumber - 1].won}'),
+                                      Ink(
+                                        decoration: const ShapeDecoration(
+                                          shape: CircleBorder(),
                                         ),
-                                        Text('${game.players[index].rounds[game.roundNumber - 1].bet}'),
-                                        Spacer(
-                                          flex: 1,
+                                        child: IconButton(
+                                          icon: const Icon(
+                                              Icons.add_circle_outline),
+                                          color: Colors.black,
+                                          onPressed: () {
+                                            game.players[index]
+                                                .rounds[game.roundNumber - 1]
+                                                .incrementWon(game.roundNumber);
+                                            game.notifyListeners(); // TODO fix this hack later!
+                                          },
                                         ),
-                                        Text('${game.players[index].rounds[game.roundNumber - 1].won}'),
-                                        Ink(
-                                          decoration: const ShapeDecoration(
-                                            shape: CircleBorder(),
-                                          ),
-                                          child: IconButton(
-                                            icon: const Icon(Icons.add_circle_outline),
-                                            color: Colors.black,
-                                            onPressed: () {
-                                              game.players[index].rounds[game.roundNumber - 1].incrementWon();
-                                              game.notifyListeners(); // TODO fix this hack later!
-                                            },
-                                          ),
+                                      ),
+                                      Ink(
+                                        decoration: const ShapeDecoration(
+                                          shape: CircleBorder(),
                                         ),
-                                        Ink(
-                                          decoration: const ShapeDecoration(
-                                            shape: CircleBorder(),
-                                          ),
-                                          child: IconButton(
-                                            icon: const Icon(Icons.remove_circle_outline),
-                                            color: Colors.black,
-                                            onPressed: () {
-                                              game.players[index].rounds[game.roundNumber - 1].decrementWon();
-                                              game.notifyListeners(); // TODO fix this hack later!
-                                            },
-                                          ),
+                                        child: IconButton(
+                                          icon: const Icon(
+                                              Icons.remove_circle_outline),
+                                          color: Colors.black,
+                                          onPressed: () {
+                                            game.players[index]
+                                                .rounds[game.roundNumber - 1]
+                                                .decrementWon();
+                                            game.notifyListeners(); // TODO fix this hack later!
+                                          },
                                         ),
-                                      ]),
+                                      ),
+                                    ]),
                                   ),
                                 ],
                               ),
                             );
                           },
-                          separatorBuilder: (BuildContext context, int index) => const Divider(),
+                          separatorBuilder: (BuildContext context, int index) =>
+                              const Divider(),
                         )),
                     Flexible(
                       flex: 1,
@@ -132,7 +147,8 @@ class _EnterResultsViewState extends State<EnterResultsView> {
                           style: mainButton,
                           onPressed: () {
                             Navigator.pop(context);
-                            Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
                               return EndOfRoundView();
                             }));
                           },

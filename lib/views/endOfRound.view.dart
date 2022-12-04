@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:skull_king_scorekeeper/models/playerRound.model.dart';
 import 'package:skull_king_scorekeeper/utils/buttons.dart';
@@ -55,21 +56,27 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                                     children: const [
                                       Text(
                                         "Player",
-                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15),
                                       ),
                                       Spacer(
                                         flex: 15,
                                       ),
                                       Text(
                                         "Bonus",
-                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15),
                                       ),
                                       Spacer(
                                         flex: 2,
                                       ),
                                       Text(
                                         "Score",
-                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15),
                                       ),
                                       Spacer(
                                         flex: 5,
@@ -83,14 +90,15 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                                       border: Border.all(
                                         color: Colors.white54,
                                       ),
-                                      borderRadius: BorderRadius.all(Radius.circular(10))
-                                  ),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
                                   child: Row(children: [
                                     Text(game.players[index].name),
                                     Spacer(
                                       flex: 3,
                                     ),
-                                    Text('${game.players[index].calcRoundBonus(game.roundNumber - 1)}'),
+                                    Text(
+                                        '${game.players[index].calcRoundBonus(game.roundNumber - 1)}'),
                                     Spacer(
                                       flex: 1,
                                     ),
@@ -102,7 +110,8 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                                       child: IconButton(
                                         icon: selectedPlayer != index
                                             ? const Icon(Icons.radio_button_off)
-                                            : const Icon(Icons.radio_button_checked),
+                                            : const Icon(
+                                                Icons.radio_button_checked),
                                         color: Colors.black,
                                         onPressed: () {
                                           setState(() {
@@ -117,12 +126,12 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                                     ),
                                   ]),
                                 ),
-
                               ],
                             ),
                           );
                         },
-                        separatorBuilder: (BuildContext context, int index) => const Divider(),
+                        separatorBuilder: (BuildContext context, int index) =>
+                            const Divider(),
                       )),
                   Flexible(
                     flex: 2,
@@ -132,64 +141,130 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             OutlinedButton(
-                                style: OutlinedButton.styleFrom(backgroundColor: Colors.white54.withOpacity(0.4)),
-
+                                style: OutlinedButton.styleFrom(
+                                    backgroundColor:
+                                        Colors.white54.withOpacity(0.4)),
                                 onPressed: () {
                                   if (selectedPlayer != -1) {
-                                    game.players[selectedPlayer].rounds[game.roundNumber - 1].miscellaneousPoints += 10;
+                                    game.players[selectedPlayer]
+                                        .rounds[game.roundNumber - 1]
+                                        .updateBonus(10);
                                     game.notifyListeners();
                                   }
                                 },
-                                child: const Text('+10', style: TextStyle(fontSize: 15, color: Colors.black),)),
+                                child: const Text(
+                                  '+10',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.black),
+                                )),
                             OutlinedButton(
-                                style: OutlinedButton.styleFrom(backgroundColor: Colors.white54.withOpacity(0.4)),
-
+                                style: OutlinedButton.styleFrom(
+                                    backgroundColor:
+                                        Colors.white54.withOpacity(0.4)),
                                 onPressed: () {
                                   if (selectedPlayer != -1) {
-                                    game.players[selectedPlayer].rounds[game.roundNumber - 1].miscellaneousPoints += 20;
+                                    game.players[selectedPlayer]
+                                        .rounds[game.roundNumber - 1]
+                                        .updateBonus(20);
                                     game.notifyListeners();
                                   }
                                 },
-                                child: const Text('+20',style: TextStyle(fontSize: 15, color: Colors.black),)),
+                                child: const Text(
+                                  '+20',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.black),
+                                )),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             OutlinedButton(
-                                style: OutlinedButton.styleFrom(backgroundColor: Colors.white54.withOpacity(0.4)),
-
+                                style: OutlinedButton.styleFrom(
+                                    backgroundColor:
+                                        Colors.white54.withOpacity(0.4)),
                                 onPressed: () {
                                   if (selectedPlayer != -1) {
-                                    PlayerRoundModel round = game.players[selectedPlayer].rounds[game.roundNumber - 1];
-                                    round.gotMermaid = !round.gotMermaid;
+                                    game.players[selectedPlayer]
+                                        .rounds[game.roundNumber - 1]
+                                        .updateBonus(20);
+                                    //PlayerRoundModel round = game.players[selectedPlayer].rounds[game.roundNumber - 1];
+                                    //round.gotMermaid = !round.gotMermaid;
                                     game.notifyListeners();
                                   }
                                 },
-                                child: const Text('Mermaid +20',style: TextStyle(fontSize: 15, color: Colors.black),)),
+                                child: const Text(
+                                  'Mermaid +20',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.black),
+                                )),
                             OutlinedButton(
-                                style: OutlinedButton.styleFrom(backgroundColor: Colors.white54.withOpacity(0.4)),
-
+                                style: OutlinedButton.styleFrom(
+                                    backgroundColor:
+                                        Colors.white54.withOpacity(0.4)),
                                 onPressed: () {
                                   if (selectedPlayer != -1) {
-                                    PlayerRoundModel round = game.players[selectedPlayer].rounds[game.roundNumber - 1];
-                                    round.gotPirateBonus = !round.gotPirateBonus;
+                                    game.players[selectedPlayer]
+                                        .rounds[game.roundNumber - 1]
+                                        .updateBonus(30);
+                                    //PlayerRoundModel round = game
+                                    //.players[selectedPlayer]
+                                    // .rounds[game.roundNumber - 1];
+                                    //round.gotPirateBonus =
+                                    //!round.gotPirateBonus;
                                     game.notifyListeners();
                                   }
                                 },
-                                child: const Text('Pirate +30',style: TextStyle(fontSize: 15, color: Colors.black),)),
+                                child: const Text(
+                                  'Pirate +30',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.black),
+                                )),
                             OutlinedButton(
-                                style: OutlinedButton.styleFrom(backgroundColor: Colors.white54.withOpacity(0.4)),
+                                style: OutlinedButton.styleFrom(
+                                    backgroundColor:
+                                        Colors.white54.withOpacity(0.4)),
                                 onPressed: () {
                                   if (selectedPlayer != -1) {
-                                    PlayerRoundModel round = game.players[selectedPlayer].rounds[game.roundNumber - 1];
-                                    round.gotSkullKing = !round.gotSkullKing;
+                                    game.players[selectedPlayer]
+                                        .rounds[game.roundNumber - 1]
+                                        .updateBonus(50);
+                                    //PlayerRoundModel round = game
+                                    //.players[selectedPlayer]
+                                    //.rounds[game.roundNumber - 1];
+                                    //round.gotSkullKing = !round.gotSkullKing;
                                     game.notifyListeners();
                                   }
                                 },
-                                child: const Text('Skull King +50',style: TextStyle(fontSize: 15, color: Colors.black),)),
+                                child: const Text(
+                                  'Skull King +50',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.black),
+                                )),
                           ],
                         ),
+                        Flexible(
+                            flex: 1,
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                              child: Ink(
+                                decoration: const ShapeDecoration(
+                                    shape: CircleBorder(), color: Colors.black),
+                                child: IconButton(
+                                  icon: const Icon(FontAwesomeIcons.rotateLeft),
+                                  color: Colors.white,
+                                  onPressed: () {
+                                    if (selectedPlayer != -1) {
+                                      game.players[selectedPlayer]
+                                          .rounds[game.roundNumber - 1]
+                                          .undoBonus();
+
+                                      game.notifyListeners();
+                                    }
+                                  },
+                                ),
+                              ),
+                            )),
                       ],
                     ),
                   ),
@@ -199,7 +274,8 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                         style: mainButton,
                         onPressed: () {
                           Navigator.pop(context);
-                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
                             return StartingRoundView();
                           }));
                         },

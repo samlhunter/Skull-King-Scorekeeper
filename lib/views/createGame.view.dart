@@ -32,8 +32,7 @@ class _CreateGameViewState extends State<CreateGameView> {
                     backgroundColor: Colors.transparent,
                     body: Center(
                         child: Column(
-                      // crossAxisAlignment: CrossAxisAlignment.stretch,
-
+                      //crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         const Text(
                           'Add Yer Pirates!',
@@ -46,8 +45,9 @@ class _CreateGameViewState extends State<CreateGameView> {
                           itemCount: game.players.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Container(
+                              //decoration: mainDecoration,
                               height: 50,
-                              color: Colors.amber,
+                              color: Colors.transparent,
                               child: Row(children: [
                                 Text(
                                   'Player:  ${game.players[index].name}',
@@ -56,7 +56,7 @@ class _CreateGameViewState extends State<CreateGameView> {
                                 Spacer(),
                                 Ink(
                                   decoration: const ShapeDecoration(
-                                    color: Colors.lightBlue,
+                                    color: Colors.black,
                                     shape: CircleBorder(),
                                   ),
                                   child: IconButton(
@@ -70,7 +70,10 @@ class _CreateGameViewState extends State<CreateGameView> {
                               ]),
                             );
                           },
-                          separatorBuilder: (BuildContext context, int index) => const Divider(),
+                          separatorBuilder: (BuildContext context, int index) =>
+                              const Divider(
+                            color: Colors.black,
+                          ),
                         )),
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 30.0),
@@ -101,36 +104,61 @@ class _CreateGameViewState extends State<CreateGameView> {
                                               Form(
                                                 key: _formKey,
                                                 child: Column(
-                                                  mainAxisSize: MainAxisSize.min,
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
                                                   children: <Widget>[
                                                     Padding(
-                                                      padding: EdgeInsets.all(8.0),
+                                                      padding:
+                                                          EdgeInsets.all(8.0),
                                                       child: TextFormField(
-                                                        controller: textController,
-                                                        decoration: InputDecoration(
-                                                          labelText: 'Player Name',
+                                                        controller:
+                                                            textController,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          labelText:
+                                                              'Player Name',
                                                           icon: Icon(
-                                                            FontAwesomeIcons.skullCrossbones,
-                                                            size: 30, //Icon Size
-                                                            color: Colors.black, //Color Of Icon
+                                                            FontAwesomeIcons
+                                                                .skullCrossbones,
+                                                            size:
+                                                                30, //Icon Size
+                                                            color: Colors
+                                                                .black, //Color Of Icon
                                                           ),
                                                         ),
                                                       ),
                                                     ),
                                                     Padding(
-                                                      padding: const EdgeInsets.all(8.0),
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
                                                       child: ElevatedButton(
                                                         style: mainButton,
                                                         child: Text("Add"),
                                                         onPressed: () {
-                                                          if (_formKey.currentState!.validate() && textController.text.length > 0) {
-                                                            game.addPlayer(Player(textController.text));
+                                                          if (_formKey
+                                                                  .currentState!
+                                                                  .validate() &&
+                                                              textController
+                                                                      .text
+                                                                      .length >
+                                                                  0) {
+                                                            game.addPlayer(Player(
+                                                                textController
+                                                                    .text));
 
-                                                            _formKey.currentState!.save();
+                                                            _formKey
+                                                                .currentState!
+                                                                .save();
 
-                                                            Navigator.of(context).pop();
-                                                            _formKey.currentState!.reset();
-                                                            textController.clear();
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                            _formKey
+                                                                .currentState!
+                                                                .reset();
+                                                            textController
+                                                                .clear();
                                                           }
                                                         },
                                                       ),
@@ -153,7 +181,8 @@ class _CreateGameViewState extends State<CreateGameView> {
 
                                   AlertDialog alert = AlertDialog(
                                     title: Text("Ahoy there!"),
-                                    content: Text("Sorry, You can't add more than 8 members to your crew!"),
+                                    content: Text(
+                                        "Sorry, You can't add more than 8 members to your crew!"),
                                     actions: [
                                       okButton,
                                     ],
@@ -174,7 +203,8 @@ class _CreateGameViewState extends State<CreateGameView> {
                             style: mainButton,
                             onPressed: () {
                               Navigator.pop(context);
-                              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
                                 return StartingRoundView();
                               }));
                             },
