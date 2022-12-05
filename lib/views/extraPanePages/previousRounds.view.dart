@@ -5,6 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:skull_king_scorekeeper/utils/constants.dart';
 import 'package:skull_king_scorekeeper/models/game.models.dart';
 
+import '../../utils/buttons.dart';
+import '../betting.view.dart';
+
 class PreviousRoundsView extends StatefulWidget {
   @override
   _PreviousRoundsViewState createState() => _PreviousRoundsViewState();
@@ -63,6 +66,17 @@ class _PreviousRoundsViewState extends State<PreviousRoundsView> {
                     ],
                   ),
                 ),
+                Spacer(),
+                    ElevatedButton(
+                        style: mainButton,
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.push(context, 
+                              MaterialPageRoute(builder: (context) {
+                                return (BettingView());
+                              }));
+                        },
+                        child: const Text('Return to Game')),
                 Spacer()
               ]))),
     );
