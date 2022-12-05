@@ -1,6 +1,6 @@
 // Tests for the game.models.dart file
 
-// Total tests in this file: 0
+// Total tests in this file: 8
 
 // See flutter documentation for instructions about how to run file.
 // Simplest run method is running the following command:
