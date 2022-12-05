@@ -14,9 +14,9 @@ class _PreviousRoundsViewState extends State<PreviousRoundsView> {
   @override
   Widget build(BuildContext context) {
     var game = context.watch<GameModel>();
-   // var player = context.watch<Player>();
-   log('previous Rounds State object was hit');
-   print('HEre is the game object: ${game.players}');
+    // var player = context.watch<Player>();
+    print('HEre is the game object: ${game.players}');
+    var playerList = game.players;
     return MaterialApp(
       home: Scaffold(
           // body: Container(
@@ -26,50 +26,45 @@ class _PreviousRoundsViewState extends State<PreviousRoundsView> {
           body: Container(
               decoration: mainDecoration,
               child: Column(children: <Widget>[
-        Spacer(),
-        Container(
-          margin: EdgeInsets.all(10),
-          alignment: Alignment.center,
-          child: Table(
-            defaultColumnWidth: FixedColumnWidth(120.0),
-            border: TableBorder.all(color: Colors.black, style: BorderStyle.solid, width: 2),
-                //itemCount: game.players.length,
-            children: [
-              TableRow(children: [
-                 Column(children: [
-                  Text('Round', style: TextStyle(fontSize: 20.0))
-                ]),
-                Column(children: [
-                  Text(game.players.toString(), style: TextStyle(fontSize: 20.0))
-                ]),
-              ]),
-              TableRow(children: [
-                Column(children: [Text('1')]),
-                Column(children: [Text('10')]),//This will be teh score of player [0]
-              ]),
-              // TableRow(children: [
-              //   Column(children: [Text('Javatpoint')]),
-              //   Column(children: [Text('MySQL')]),
-              //   Column(children: [Text('5*')]),
-              //    Column(children: [Text('5*')]),
-              // ]),
-              // TableRow(children: [
-              //   Column(children: [Text('Javatpoint')]),
-              //   Column(children: [Text('ReactJS')]),
-              //   Column(children: [Text('5*')]),
-              //    Column(children: [Text('5*')]),
-              // ]),
-              //  TableRow(children: [
-              //   Column(children: [Text('Javatpoint')]),
-              //   Column(children: [Text('ReactJS')]),
-              //   Column(children: [Text('5*')]),
-              //    Column(children: [Text('5*')]),
-              // ]),
-            ],
-          ),
-        ),
-        Spacer()
-      ]))),
+                Spacer(),
+                Container(
+                  margin: EdgeInsets.all(10),
+                  alignment: Alignment.center,
+                  child: Table(
+                    defaultColumnWidth: FixedColumnWidth(120.0),
+                    border: TableBorder.all(
+                        color: Colors.black,
+                        style: BorderStyle.solid,
+                        width: 2),
+                    //itemCount: game.players.length,
+                    children: [
+                      TableRow(children: [
+                        Column(children: [
+                          Text('Round', style: TextStyle(fontSize: 20.0))
+                        ]),
+                        for (int i = 0; i < playerList.length; i++)
+                          Column(children: [
+                            Text(playerList[i].name.toString(),
+                                style: TextStyle(fontSize: 20.0))
+                          ]),
+                      ]),
+                      for (int i = 1; i <= 10; i++)
+                        TableRow(children: [
+                          Column(children: [Text(i.toString())]),
+                          for (int j = 0; j < playerList.length; j++)
+                            Column(children: [
+                               if(i <= game.roundNumber)
+                              Text(playerList[j].calcScore().toString())
+                              else
+                              Text('--')
+                            ]),
+
+                        ]),
+                    ],
+                  ),
+                ),
+                Spacer()
+              ]))),
     );
   }
 }
