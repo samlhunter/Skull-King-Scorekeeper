@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:skull_king_scorekeeper/models/playerRound.model.dart';
 import 'package:skull_king_scorekeeper/utils/buttons.dart';
 import 'package:skull_king_scorekeeper/utils/constants.dart';
+import 'package:skull_king_scorekeeper/views/gameResults.view.dart';
 import 'package:skull_king_scorekeeper/views/startingRound.view.dart';
 import 'package:skull_king_scorekeeper/models/game.models.dart';
 
@@ -270,16 +271,27 @@ class _EndOfRoundViewState extends State<EndOfRoundView> {
                   ),
                   Flexible(
                     flex: 1,
-                    child: ElevatedButton(
-                        style: mainButton,
-                        onPressed: () {
-                          Navigator.pop(context);
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return StartingRoundView();
-                          }));
-                        },
-                        child: const Text('Next Round!')),
+                    child: game.roundNumber == 10
+                        ? ElevatedButton(
+                            style: mainButton,
+                            onPressed: () {
+                              Navigator.pop(context);
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return GameResultsView();
+                              }));
+                            },
+                            child: const Text('View Game Results'))
+                        : ElevatedButton(
+                            style: mainButton,
+                            onPressed: () {
+                              Navigator.pop(context);
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return StartingRoundView();
+                              }));
+                            },
+                            child: const Text('Next Round!')),
                   ),
                 ],
               ),
