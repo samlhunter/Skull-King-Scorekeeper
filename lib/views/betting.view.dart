@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:skull_king_scorekeeper/components/FeaturesDrawer.component.dart';
@@ -16,6 +18,7 @@ class _BettingViewState extends State<BettingView> {
   @override
   Widget build(BuildContext context) {
     var game = context.watch<GameModel>();
+
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
@@ -125,6 +128,7 @@ class _BettingViewState extends State<BettingView> {
                         child: ElevatedButton(
                             style: mainButton,
                             onPressed: () {
+                              print('COMNTEXT IS: $context');
                               //update player bet info in presenter
                               Navigator.pop(context);
                               Navigator.push(context, MaterialPageRoute(builder: (context) {

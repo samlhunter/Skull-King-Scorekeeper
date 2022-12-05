@@ -17,12 +17,14 @@ class _EnterResultsViewState extends State<EnterResultsView> {
   Widget build(BuildContext context) {
     var game = context.watch<GameModel>();
     return MaterialApp(
+      // ignore: avoid_print
       home: Scaffold(
           appBar: AppBar(
             title: Text('Round ${game.roundNumber} - Wins'),
             backgroundColor: Colors.black,
             centerTitle: true,
           ),
+          
           drawer: generateGameDrawer(context),
           body: Container(
             decoration: mainDecoration,
